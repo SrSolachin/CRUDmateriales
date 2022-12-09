@@ -63,4 +63,8 @@ export class HomeComponent {
     this.stock = 0;
   }
 
+  eliminarMaterInfo(i: number){
+    this.data.splice(i, 1);
+  }
+
 }
