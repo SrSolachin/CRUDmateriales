@@ -41,4 +41,14 @@ export class HomeComponent {
     this.stock = 0;
   }
 
+  editarMateInfo(i: number){
+    this.position = i;
+    this.modalService.open(this.contentModal, { windowClass: 'dark-modal' });
+    this.stateChange = true;
+    this.nombre = this.data[i].nombre;
+    this.unidadMedida = this.data[i].unidadMedida;
+    this.precio = this.data[i].precio;
+    this.stock = this.data[i].stock;
+  }
+
 }
