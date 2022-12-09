@@ -18,12 +18,13 @@ export class HomeComponent {
   total:number = 0;
   contentModal:any;
   stateChange:boolean = false;
-  position: number = 0;
+  position:any;
   search: string = '';
 
   constructor(private modalService: NgbModal) {}
 
   openWindowCustomClass(content: any) {
+    this.stateChange = false;
     this.contentModal = content;
 		this.modalService.open(content, { windowClass: 'dark-modal' });
     this.nombre = '';
@@ -33,6 +34,8 @@ export class HomeComponent {
 	}
 
   crearMaterInfo(){
+    this.stateChange = false;
+    this.position = null;
     let info = {
       nombre: this.nombre,
       unidadMedida: this.unidadMedida,
