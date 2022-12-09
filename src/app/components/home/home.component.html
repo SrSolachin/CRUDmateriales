@@ -1,1 +1,76 @@
-<p>home works!</p>
+<app-header></app-header>
+
+<div class="container">
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">{{ stateChange == false ? 'Crear Material' : 'Modificar Material '}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="my-2">
+          <label for="">Coloca el nombre</label>
+          <input type="text" [(ngModel)]="nombre" class="form-control" placeholder="Coloca el nombre" width="100px" />
+        </div>
+        <div class="my-2">
+          <label for="">Coloca la unidad de medida</label>
+          <input type="text" [(ngModel)]="unidadMedida" class="form-control" placeholder="Coloca la unidad de medida" />
+        </div>
+        <div class="my-2">
+          <label for="">Coloca el precio</label>
+          <input type="number" [(ngModel)]="precio" class="form-control" placeholder="Coloca el precio" min="0" />
+        </div>
+        <div class="my-2">
+          <label for="">Coloca el stock</label>
+          <input type="number" [(ngModel)]="stock" class="form-control" placeholder="Coloca el stock" min="0" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cancelar</button>
+        <div *ngIf="stateChange == false">
+          <button type="button" class="btn btn-primary" (click)="crearMaterInfo()">Crear</button>
+        </div>
+        <div *ngIf="stateChange == true">
+          <button type="button" class="btn btn-primary">Modificar</button>
+        </div>
+      </div>
+    </ng-template>
+  
+    <button class="btn btn-outline-primary mb-2 me-2" (click)="openWindowCustomClass(content)">
+      Agregar
+    </button>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Unidad de medida</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Total</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let info of data; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <th scope="row">{{ info.nombre }}</th>
+            <td>
+              {{ info.unidadMedida }}
+            </td>
+            <td>{{ info.precio | currency }}</td>
+            <td>{{ info.stock | currency }}</td>
+            <td>{{ info.total | currency }}</td>
+            <td>
+              <button class="btn btn-outline-primary mb-2 me-2">
+                Editar
+              </button>
+              <button class="btn btn-outline-danger mb-2 me-2">
+                Eliminar
+              </button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+  
