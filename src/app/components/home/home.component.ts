@@ -51,4 +51,16 @@ export class HomeComponent {
     this.stock = this.data[i].stock;
   }
 
+  modificarMaterInfo(){
+    this.data[this.position].nombre = this.nombre;
+    this.data[this.position].unidadMedida = this.unidadMedida;
+    this.data[this.position].precio = this.precio;
+    this.data[this.position].stock = this.stock;
+    this.modalService.dismissAll();
+    this.nombre = '';
+    this.unidadMedida = '';
+    this.precio = 0;
+    this.stock = 0;
+  }
+
 }
