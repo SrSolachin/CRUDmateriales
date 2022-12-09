@@ -23,6 +23,10 @@ export class HomeComponent {
   openWindowCustomClass(content: any) {
     this.contentModal = content;
 		this.modalService.open(content, { windowClass: 'dark-modal' });
+    this.nombre = '';
+    this.unidadMedida = '';
+    this.precio = 0;
+    this.stock = 0;
 	}
 
   crearMaterInfo(){
