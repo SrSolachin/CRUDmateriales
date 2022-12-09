@@ -1,6 +1,10 @@
 <app-header></app-header>
 
 <div class="container">
+    <div class="mx-5 mt-3">
+        <input type="text" [(ngModel)]="search" (keyup)="buscador($event)" class="form-control" placeholder="Buscador" />
+    </div>
+
     <ng-template #content let-modal>
       <div class="modal-header">
         <h4 class="modal-title">{{ stateChange == false ? 'Crear Material' : 'Modificar Material '}}</h4>

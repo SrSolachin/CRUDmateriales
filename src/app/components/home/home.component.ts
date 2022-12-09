@@ -9,6 +9,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent {
 
   data:Array<any> = [];
+  dataFiltrada:Array<any> = [];
+  dataCopia:Array<any> = [];
   nombre:string = '';
   unidadMedida:string = '';
   precio:number = 0;
@@ -17,6 +19,7 @@ export class HomeComponent {
   contentModal:any;
   stateChange:boolean = false;
   position: number = 0;
+  search: string = '';
 
   constructor(private modalService: NgbModal) {}
 
@@ -38,6 +41,8 @@ export class HomeComponent {
       total: this.precio * this.stock
     }
     this.data.unshift(info);
+    this.dataFiltrada.unshift(info);
+    this.dataCopia.unshift(info);
     this.modalService.dismissAll();
     this.nombre = '';
     this.unidadMedida = '';
@@ -68,7 +73,21 @@ export class HomeComponent {
   }
 
   eliminarMaterInfo(i: number){
-    this.data.splice(i, 1);
+    let text = `¿Estás seguro que deseas eliminarlo ${this.data[i].nombre}?`;
+    if (confirm(text) == true) {
+      this.data.splice(i, 1);
+    }
+  }
+
+  buscador(event: any){
+    if (event.target.value != '') {
+      const filtrado = this.dataFiltrada.filter((ele) => {
+        return ele.nombre.toLowerCase().trim().includes(event.target.value);
+      });
+      this.data = filtrado;
+    } else {
+      this.data = this.dataCopia;
+    }
   }
 
 }
